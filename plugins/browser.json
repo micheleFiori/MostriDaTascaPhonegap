@@ -1,0 +1,43 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-battery-status": {
+      "PACKAGE_NAME": "da"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "da"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "da"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "da"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "da"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "da"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "da"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "da"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "da"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "da"
+    }
+  }
+}

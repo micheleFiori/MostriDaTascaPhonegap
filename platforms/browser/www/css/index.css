@@ -1,0 +1,107 @@
+:root {
+    --colorPrimary:#4F4233;
+    --colorPrimaryDark:#4F4233;
+    --colorAccent:#FDDDB4;
+    --textlight:#7C6D5D;
+    --textnormal:#4F4233;
+    --textdark:#211607;
+    --buttontext:#E2D6C7;
+    --background:#FDDDB4;
+    --transparent:#00000000;
+    --shadowColor:rgba(0, 0, 0, 0.6);
+}
+
+@font-face {
+    font-family: "alegreya_medium";
+    src: url("../fonts/alegreya_medium.ttf");
+}
+@font-face {
+    font-family: "alegreya_sans_medium";
+    src: url("../fonts/alegreya_sans_medium.ttf");
+}
+@font-face {
+    font-family: "fondamento_Regular";
+    src: url("../fonts/fondamento_Regular.ttf");
+}
+
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body{
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+
+    background-color: var(--background);
+    font-family: alegreya_medium, serif;
+    font-size:12px;
+}
+
+p{
+    margin: 0;
+}
+
+
+#woodenActionBar{
+    background-image: url("../vectors/wooden_bar.svg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    width: 100%;
+    font-family: fondamento_Regular, serif;
+    font-size: 28pt;
+    padding: 10px 0;
+    color: var(--buttontext);
+    text-align: center;
+    box-shadow: 0px 3px 5px -1px var(--shadowColor);
+}
+
+.woodenButton{
+    background-color: #715c45;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+
+    font-family: fondamento_Regular, serif;
+    font-size: 22pt;
+
+    color: var(--buttontext);
+
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+
+/* Portrait layout (default) */
+
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+
+}
+
+h1 {
+
+}
+
+
+
+
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}

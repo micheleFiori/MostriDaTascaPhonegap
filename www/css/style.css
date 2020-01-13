@@ -1,0 +1,169 @@
+:root {
+    --colorPrimary:#4F4233;
+    --colorPrimaryDark:#4F4233;
+    --colorAccent:#FDDDB4;
+    --textlight:#7C6D5D;
+    --textnormal:#4F4233;
+    --textdark:#211607;
+    --buttontext:#E2D6C7;
+    --woodenButtonBackground:#715c45;
+    --woodenButtonBackgroundFocus:#362c20;
+    --background:#FDDDB4;
+    --transparent:#00000000;
+    --shadowColor:rgba(0, 0, 0, 0.6);
+}
+
+@font-face {
+    font-family: "alegreya_medium";
+    src: url("../fonts/alegreya_medium.ttf");
+}
+@font-face {
+    font-family: "alegreya_sans_medium";
+    src: url("../fonts/alegreya_sans_medium.ttf");
+}
+@font-face {
+    font-family: "fondamento_Regular";
+    src: url("../fonts/fondamento_Regular.ttf");
+}
+
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+*:focus {
+    outline:0;
+}
+
+body{
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+    text-align: center;
+    background-color: var(--background);
+    font-family: alegreya_medium, serif;
+    font-size:12px;
+}
+
+h1{
+
+}
+h2{
+    font-family: fondamento_Regular, serif;
+    font-size: 28pt;
+    font-weight: normal;
+    color: var(--buttontext);
+    text-align: center;
+    margin: 0;
+}
+h3{
+    font-size: 22pt;
+    font-weight: normal;
+    color: var(--textdark);
+}
+p{
+    margin: 0;
+    font-size: 16pt;
+    font-weight: normal;
+    color: var(--textnormal);
+}
+
+
+#woodenActionBar{
+    background-image: url("../vectors/wooden_bar.svg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    position: fixed;
+    width: 100%;
+    font-family: fondamento_Regular, serif;
+    font-size: 28pt;
+    padding: 10px 0;
+    color: var(--buttontext);
+    text-align: center;
+    box-shadow: 0px 3px 5px -1px var(--shadowColor);
+    z-index: 999;
+}
+#backButton{
+    position: absolute;
+    top: 30%;
+    left: 5%;
+}
+
+.woodenButton{
+    background-color: var(--woodenButtonBackground);
+    padding: 4px 40px;
+    font-family: fondamento_Regular, serif;
+    font-size: 22pt;
+    line-height: 1.2;
+    color: var(--buttontext);
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.woodenButton:hover{
+    background-color: var(--woodenButtonBackgroundFocus);
+}
+.buttonSmall{
+    padding: 4px 20px;
+    font-size: 16pt;
+}
+
+
+#playerImageBox{
+    padding: 0 auto;
+    position: relative;
+}
+#playerImage{
+    border: 10px solid var(--colorPrimaryDark);
+    background-color: var(--buttontext);
+    height: 200px;
+    width: 200px;
+    margin-top: 50px;
+}
+#playerImageNewImageButton{
+    position: absolute;
+    top: 50%;
+    margin-left: 10px;
+}
+
+
+
+#newUserName{
+    border: 0;
+    border-bottom: 2px solid var(--textlight);
+    background-color: var(--transparent);
+    font-family: alegreya_medium, serif;
+    font-size: 22pt;
+    display: none;
+}
+#newUserName::placeholder{
+    color: var(--textlight);
+    font-family: alegreya_medium, serif;
+    font-size: 22pt;
+}
+
+#playerEditNameButton{
+    display: inline;
+}
+#playerEditNameDeleteButton{
+    display: none;
+}
+#playerEditSaveButton{
+    display: none;
+}
+
+
+/* Portrait layout (default) */
+
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+
+}
+
+h1 {
+
+}

@@ -1,0 +1,18 @@
+#rankingListContainer{
+    width: 100%;
+}
+.rankingListItem{
+    width: 100%;
+}
+.rankingLIstItem_position{
+    float: left;
+    padding: 0 20px;
+    background-color: green;
+}
+.rankingListItem_image{
+    float: left
+}
+.rankingListItem_playerInfo{
+    float: left;
+    text-align: left;
+}

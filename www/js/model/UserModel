@@ -1,0 +1,6 @@
+var user = {
+    name: null,
+    img: null,
+    lp: null,
+    xp: null
+};

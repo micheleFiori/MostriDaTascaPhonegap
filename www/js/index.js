@@ -1,21 +1,4 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -34,16 +17,151 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+
+        if(isFirtsUse()){
+            getUserId();
+        }
+        else {
+            console.log("no first use. sessionId: "+localStorage.getItem("sessionId"));
+            getUserData();
+        }
+
+        $("#goToMapButton").click(function(){
+            console.log("goToMapButton clicked");
+            window.location = "map.html";
+        });
+        $("#goToRankingButton").click(function(){
+            console.log("goToRankingButton clicked");
+            window.location = "ranking.html";
+        });
+
+        $("#playerImageNewImageButton").click(function () {
+            console.log("goToRankingButton playerImageNewImageButton");
+        });
+        $("#playerEditNameButton").click(function () {
+            console.log("playerEditNameButton playerImageNewImageButton");
+
+            $("#userNameLabel").css("display", "none");
+            $("#newUserName").css("display", "inline");
+            $("#playerEditNameButton").css("display", "none");
+            $("#playerEditNameDeleteButton").css("display", "inline");
+
+        });
+        $("#newUserName").keyup(function () {
+            if($("#newUserName").val() != ""){
+                $("#playerEditNameDeleteButton").css("display", "none");
+                $("#playerEditSaveButton").css("display", "inline");
+            }
+            else {
+                $("#playerEditSaveButton").css("display", "none");
+                $("#playerEditNameDeleteButton").css("display", "inline");
+
+            }
+        });
+
+        $("#playerEditNameDeleteButton").click(function () {
+            $("#newUserName").css("display", "none");
+            $("#userNameLabel").css("display", "inline");
+            $("#playerEditNameDeleteButton").css("display", "none");
+            $("#playerEditNameButton").css("display", "inline");
+        });
+
+        $("#playerEditSaveButton").click(function () {
+            changeName($("#newUserName").val());
+            $("#newUserName").css("display", "none");
+            $("#userNameLabel").css("display", "inline");
+            $("#playerEditSaveButton").css("display", "none");
+            $("#playerEditNameButton").css("display", "inline");
+        });
+
+
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
         console.log('Received Event: ' + id);
     }
 };
+
+
+
+
+const BASE_URL = "https://ewserver.di.unimi.it/mobicomp/mostri/";
+
+function isFirtsUse(){
+    return localStorage.getItem("sessionId")==null
+}
+function getUserId(){
+    $.ajax({
+        method: 'get',
+        url: BASE_URL+"register.php",
+        dataType: 'json',
+        success: function(result) {
+            console.log(result.session_id);
+            localStorage.setItem("sessionId", result.session_id);
+            getUserData();
+        },
+        error: function(error) { //TODO gestire gli errori
+            console.error(error);
+        }
+    });
+}
+
+
+function getUserData(){
+    $.ajax({
+        method: 'post',
+        url:BASE_URL+"getprofile.php",
+        data: JSON.stringify(
+            {
+                session_id : localStorage.getItem("sessionId")
+            }),
+        dataType: 'json',
+        success: function(result) {
+            console.log(result);
+            if(result.username == null){
+                sessionStorage.setItem("userName", "Guerriero senza nome");
+            }
+            else {
+                sessionStorage.setItem("userName", result.username);
+            }
+            sessionStorage.setItem("userImg", result.img);
+            sessionStorage.setItem("userLp", result.lp);
+            sessionStorage.setItem("userXp", result.xp);
+            showUserData();
+        },
+        error: function(error) { //TODO gestire gli errori
+            console.error(error);
+        }
+    });
+}
+
+function showUserData(){
+    $("#userNameLabel").html(sessionStorage.getItem("userName"));
+    $("#userLpLabel").html(sessionStorage.getItem("userLp"));
+    $("#userXpLabel").html(sessionStorage.getItem("userXp"));
+}
+
+
+function changeName(newName){
+    sessionStorage.setItem("userName", newName);
+
+    $.ajax({
+        method: 'post',
+        url:BASE_URL+"setprofile.php",
+        data: JSON.stringify(
+            {
+                session_id : localStorage.getItem("sessionId"),
+                username : newName
+            }),
+        dataType: 'json',
+        success: function(result) {
+            console.log(result);
+            showUserData();
+        },
+        error: function(error) { //TODO gestire gli errori
+            console.error(error);
+        }
+    });
+}

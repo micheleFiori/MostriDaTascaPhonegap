@@ -1,0 +1,19 @@
+.mapboxgl-ctrl-bottom-right {
+    display: none;
+}
+.mapboxgl-ctrl-top-right {
+    height: 100%;
+    top: 92%;
+    right: 10px;
+    bottom: 0 !important;
+}
+.mapboxgl-ctrl{
+    bottom: 0 !important;
+}
+
+
+
+
+#mapObjectInteractionDiv{
+    padding-top: 80px;
+}

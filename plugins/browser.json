@@ -30,6 +30,9 @@
     },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "da"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.michelefiori.mostridatasca"
     }
   },
   "dependent_plugins": {

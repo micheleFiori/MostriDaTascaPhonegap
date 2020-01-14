@@ -24,8 +24,30 @@
             <h2>Mappa</h2>
         </div>
 
+        <div id="mapObjectInteractionDiv" style='width: 100%; height: auto; background-color: rgba(255,88,119,0.2); z-index: 999; display: none'>
 
-        <div id='map' style='width: 100%; height: 100px;'></div>
+            <div id="mapObjectInfoBox">
+                <div id="mapObjectImageBox">
+                    <img id="playerImage" src="vectors/warrior_icon.svg">
+                </div>
+
+                <h3>
+                    <span id="mapObjectName">Drago Bla Bla</span>
+                </h3>
+                <p id="mapObjectDim">blabla medio</p>
+
+                <p id="mapObjectProbabSoprText" style="display: none;">Probabilità di sopravvivenza:<br><span id="mapObjectProbabSopr"></span></p>
+
+                <p id="mapObjectDistWarning" style="display: none;">Distanza superiore a 50m!<br>Impossibile interagire.</p>
+
+                <button id="mapObjectAnnullaButton" class="woodenButton">Annulla</button>
+                <button id="mapObjectCombattiButton" class="woodenButton">Combatti</button>
+            </div>
+        </div>
+
+
+        <div id='map' style='width: 100%; height: 100px; display: block;'></div>
+
 
 
 

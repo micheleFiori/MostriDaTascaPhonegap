@@ -17,3 +17,24 @@
 #mapObjectInteractionDiv{
     padding-top: 80px;
 }
+
+.woodenButtonDisabled{
+    background-color: var(--woodenButtonBackgroundFocus);
+    color: var(--textlight);
+    pointer-events: none;
+}
+
+
+
+
+#mapObjectInteractionResultDiv{
+    padding-top: 80px;
+}
+#InteractionResultLabel{
+    margin-top: 0;
+    padding-top: 80px;
+}
+
+#InteractionResultButton{
+    margin-top: 400px;
+}

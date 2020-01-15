@@ -3,16 +3,23 @@
 }
 .rankingListItem{
     width: 100%;
+    height: auto;
+    padding-bottom: 20px;
 }
 .rankingLIstItem_position{
-    float: left;
     padding: 0 20px;
-    background-color: green;
+    float: left;
 }
 .rankingListItem_image{
-    float: left
+    float: left;
+    margin-right: 20px;
 }
 .rankingListItem_playerInfo{
-    float: left;
     text-align: left;
+}
+.rankingListItem_playerInfo h1{
+    margin: 0;
+}
+.rankingListItem_playerInfo p{
+    font-style: italic;
 }

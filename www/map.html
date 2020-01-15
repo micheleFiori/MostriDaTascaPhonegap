@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
@@ -24,35 +24,38 @@
             <h2>Mappa</h2>
         </div>
 
-        <div id="mapObjectInteractionDiv" style='width: 100%; height: auto; background-color: rgba(255,88,119,0.2); z-index: 999; display: none'>
+        <div id="mapObjectInteractionDiv">
 
             <div id="mapObjectInfoBox">
                 <div id="mapObjectImageBox">
                     <img id="playerImage" src="vectors/warrior_icon.svg">
                 </div>
 
-                <h3>
-                    <span id="mapObjectName">Drago Bla Bla</span>
-                </h3>
+                <h3 id="mapObjectName">Drago Bla Bla</h3>
                 <p id="mapObjectDim">blabla medio</p>
 
                 <p id="mapObjectProbabSoprText" style="display: none;">Probabilità di sopravvivenza:<br><span id="mapObjectProbabSopr"></span></p>
 
-                <p id="mapObjectDistWarning" style="display: none;">Distanza superiore a 50m!<br>Impossibile interagire.</p>
-
-                <button id="mapObjectAnnullaButton" class="woodenButton">Annulla</button>
-                <button id="mapObjectInteragisciButton" class="woodenButton">Combatti</button>
+                <div id="mapObjectBottomBox">
+                    <p id="mapObjectDistWarning" style="display: none;">Distanza superiore a 50m!<br>Impossibile interagire.</p>
+                    <br>
+                    <button id="mapObjectAnnullaButton" class="woodenButton">Annulla</button>
+                    <button id="mapObjectInteragisciButton" class="woodenButton">Combatti</button>
+                </div>
             </div>
         </div>
 
 
-        <div id="mapObjectInteractionResultDiv" style='width: 100%; height: auto; background-color: rgba(101,255,70,0.2); z-index: 999; display: none'>
+        <div id="mapObjectInteractionResultDiv">
 
                 <h3 id="InteractionResultLabel"></h3>
                 <p id="InteractionResultDescription"></p>
 
 
-                <button id="InteractionResultButton" class="woodenButton">Indietro</button>
+                <div id="mapObjectInteractionResultBottomBox">
+                    <button id="InteractionResultButton" class="woodenButton">Indietro</button>
+                </div>
+
             </div>
         </div>
 

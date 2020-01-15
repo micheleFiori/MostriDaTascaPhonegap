@@ -54,7 +54,7 @@ function getMapObjects(){
                 el.style.backgroundPosition = "center";
                 el.style.backgroundRepeat = "no-repeat";
                 el.style.backgroundSize = "cover";
-
+                el.style.zIndex = "99";
                 el.style.width = "38px";
                 el.style.height = "38px";
 
@@ -151,7 +151,7 @@ function openInteractionDiv(oid) {
         $("#mapObjectProbabSopr").html(probSopr);
     }
 
-    if(distance(currentMapObject.lat, currentMapObject.lon, map.transform.center.lat, map.transform.center.lng, "K")>50){
+    if(/*todo lasciare: distance(currentMapObject.lat, currentMapObject.lon, map.transform.center.lat, map.transform.center.lng, "K")>50*/false){
         console.log("distanza maggiore di 50m !!!");
         $("#mapObjectDistWarning").css("display", "block");
 

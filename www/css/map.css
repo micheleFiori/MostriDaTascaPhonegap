@@ -1,3 +1,12 @@
+
+html{
+    height: 100% !important;
+}
+body{
+    height: 100% !important;
+}
+
+
 .mapboxgl-ctrl-bottom-right {
     display: none;
 }
@@ -15,6 +24,12 @@
 
 
 #mapObjectInteractionDiv{
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    display: none;
+}
+#mapObjectImageBox{
     padding-top: 80px;
 }
 
@@ -23,18 +38,34 @@
     color: var(--textlight);
     pointer-events: none;
 }
+#mapObjectName{
+    margin-bottom: 0;
+}
+#mapObjectDim{
+    font-style: italic;
+}
+
+#mapObjectBottomBox{
+    width: 100%;
+    position: absolute;
+    bottom: 40px;
+}
 
 
 
 
 #mapObjectInteractionResultDiv{
-    padding-top: 80px;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    display: none;
 }
 #InteractionResultLabel{
     margin-top: 0;
-    padding-top: 80px;
+    padding-top: 160px;
 }
-
-#InteractionResultButton{
-    margin-top: 400px;
+#mapObjectInteractionResultBottomBox{
+    width: 100%;
+    position: absolute;
+    bottom: 40px;
 }

@@ -10,7 +10,7 @@ $(function() {
     mapboxgl.accessToken = 'pk.eyJ1IjoibWljaGVsZWZpb3JpIiwiYSI6ImNrMzRhcG56MDA1dnMzZGx0a2F2ZGh2bzMifQ.xAwunHM49L77LfvoIerzYg';
     map = new mapboxgl.Map({
         container: 'map',
-        center: new mapboxgl.LngLat(9.547826, 45.399986), //todo da centrare nella posizione attuale
+        center: new mapboxgl.LngLat(/*todo sessionStorage.getItem("currentLat"), sessionStorage.getItem("currentLon")*/ 45,9), //todo da centrare nella posizione attuale
         zoom: 16.5,
         style: 'mapbox://styles/michelefiori/ck3g2w4xm03rc1cpijwkgk2h4',
     });
@@ -46,10 +46,12 @@ function getMapObjects(){
                 el.className = 'marker';
 
                 if(marker.type == "MO"){
-                    el.style.backgroundImage = "url(../vectors/dragon_icon.svg)";
+                    //el.style.backgroundImage = "url(../vectors/dragon_icon.svg)"; //TODO: va bene così????
+                    el.classList.add("dragon-icon");
                 }
                 else if(marker.type == "CA"){
-                    el.style.backgroundImage = "url(../vectors/candy_icon.svg)";
+                    //el.style.backgroundImage = "url(../vectors/candy_icon.svg)"; //TODO: va bene così????
+                    el.classList.add("candy-icon");
                 }
                 el.style.backgroundPosition = "center";
                 el.style.backgroundRepeat = "no-repeat";
@@ -218,6 +220,9 @@ function fightEatCall(oid){
 }
 
 function showresult(currentMapObject) {
+    sessionStorage.setItem("userLp",callResult.lp);
+    sessionStorage.setItem("userXp",callResult.xp);
+
     if(currentMapObject.type == "CA"){
         $("#InteractionResultDescription").html("Hai mangiato la caramella <br>Nuovi punti vita: <br>"+callResult.lp);
         $("#InteractionResultButton").click(function () {

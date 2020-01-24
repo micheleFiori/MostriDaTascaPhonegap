@@ -27,8 +27,30 @@ var app = {
             getUserData();
         }
 
+        var lat = null;
+        var lon = null;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition);
+        }
+        else{
+
+        }
+
+        function setPosition(position) {
+            /*todo alert("Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude);*/
+
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+
+            sessionStorage.setItem("currentLat",lat);
+            sessionStorage.setItem("currentLon",lon);
+        }
+
+
         $("#goToMapButton").click(function(){
             console.log("goToMapButton clicked");
+
             window.location = "map.html";
         });
         $("#goToRankingButton").click(function(){
@@ -37,8 +59,51 @@ var app = {
         });
 
         $("#playerImageNewImageButton").click(function () {
-            console.log("goToRankingButton playerImageNewImageButton");
+            console.log("playerImageNewImageButton playerImageNewImageButton");
+            /*TODO questo se voglio caricarlo dalla camera
+
+                    navigator.camera.getPicture(onSuccess, onFail, { quality: 20,
+                        destinationType: Camera.DestinationType.FILE_URL
+                    });
+                     */
+                navigator.camera.getPicture(onSuccess, onFail, {
+                    quality: 20,
+                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                    allowEdit: false,
+                    destinationType: Camera.DestinationType.FILE_URL
+
+                });
+
         });
+
+        // Change image source
+        function onSuccess(imageData) {
+            getFileContentAsBase64(imageData,function (base64Image) {
+                //alert(base64Image);
+                $("#playerImage").attr("style","background-image: url('"+base64Image+"')");
+
+
+                if(base64Image.length >= 137000) {
+                    alert("Immagine troppo grande");
+                }
+                else{
+                    uploadImage(base64Image);
+                }
+
+            });
+
+        }
+
+        function onFail(message) {
+            alert('Spiacenti, si è verificato un errore: ' + message);
+
+        }
+
+
+
+
+
+
         $("#playerEditNameButton").click(function () {
             console.log("playerEditNameButton playerImageNewImageButton");
 
@@ -138,6 +203,7 @@ function getUserData(){
 }
 
 function showUserData(){
+    $("#playerImage").attr("style","background-image: url('data:image/png;base64, "+sessionStorage.getItem("userImg")+"')");
     $("#userNameLabel").html(sessionStorage.getItem("userName"));
     $("#userLpLabel").html(sessionStorage.getItem("userLp"));
     $("#userXpLabel").html(sessionStorage.getItem("userXp"));
@@ -164,4 +230,65 @@ function changeName(newName){
             console.error(error);
         }
     });
+}
+
+
+
+
+function uploadImage(img){
+
+    var imgb64 = img.substring(img.indexOf("base64,")+7);
+
+    console.log(img);
+    console.log(imgb64);
+
+    sessionStorage.setItem("userImg", imgb64);
+
+    $.ajax({
+        method: 'post',
+        url:BASE_URL+"setprofile.php",
+        data: JSON.stringify(
+            {
+                session_id : localStorage.getItem("sessionId"),
+                img : imgb64
+            }),
+        dataType: 'json',
+        success: function(result) {
+            console.log(result);
+            showUserData();
+        },
+        error: function(error) { //TODO gestire gli errori
+            console.error(error);
+        }
+    });
+}
+
+
+
+/**
+ * This function will handle the conversion from a file to base64 format
+ *
+ * @path string
+ * @callback function receives as first parameter the content of the image
+ *
+ * https://ourcodeworld.com/articles/read/80/how-to-convert-a-image-from-the-device-to-base64-with-javascript-in-cordova
+ */
+function getFileContentAsBase64(path,callback){
+    window.resolveLocalFileSystemURL(path, gotFile, fail);
+
+    function fail(e) {
+        alert('Cannot found requested file');
+    }
+
+    function gotFile(fileEntry) {
+        fileEntry.file(function(file) {
+            var reader = new FileReader();
+            reader.onloadend = function(e) {
+                var content = this.result;
+                callback(content);
+            };
+            // The most important point, use the readAsDatURL Method from the file plugin
+            reader.readAsDataURL(file);
+        });
+    }
 }

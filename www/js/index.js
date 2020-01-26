@@ -1,3 +1,5 @@
+const TEST_SESSION_ID = "q3btuM26UGgWe6Km"; //session id usato solo per test
+
 
 var app = {
     // Application Constructor
@@ -17,6 +19,14 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+
+        
+        /*TODO: ***************testato solo su browser*************/
+        if (!navigator.onLine) {
+            window.location = "no_network.html";
+        }
+        /*FINE testato solo su browser*******************************/
 
 
         if(isFirtsUse()){
@@ -169,6 +179,7 @@ function getUserId(){
         },
         error: function(error) { //TODO gestire gli errori
             console.error(error);
+            alert("Spiacenti, si è verificato un errore imprevisto, per favore riprova più tardi.");
         }
     });
 }
@@ -198,6 +209,7 @@ function getUserData(){
         },
         error: function(error) { //TODO gestire gli errori
             console.error(error);
+            alert("Spiacenti, si è verificato un errore imprevisto, per favore riprova più tardi.");
         }
     });
 }
@@ -228,6 +240,7 @@ function changeName(newName){
         },
         error: function(error) { //TODO gestire gli errori
             console.error(error);
+            alert("Spiacenti, si è verificato un errore imprevisto, per favore riprova più tardi.");
         }
     });
 }
@@ -241,6 +254,17 @@ function uploadImage(img){
 
     console.log(img);
     console.log(imgb64);
+
+
+    /*TODO: ******aggiunto non testato******************/
+
+    if (imgb64.length > 137000) {
+        alert("Spiacenti, l'immagine è troppo grande.\nRiprova con un'immagine di dimensioni minori.");
+        return;
+    }
+
+    /********fine aggiunte non testate*********/
+
 
     sessionStorage.setItem("userImg", imgb64);
 
@@ -259,6 +283,7 @@ function uploadImage(img){
         },
         error: function(error) { //TODO gestire gli errori
             console.error(error);
+            alert("Spiacenti, si è verificato un errore imprevisto, per favore riprova più tardi.");
         }
     });
 }

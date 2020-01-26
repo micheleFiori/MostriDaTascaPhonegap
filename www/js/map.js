@@ -1,6 +1,15 @@
 var map;
 
-$(function() {
+$(function () {
+
+    /*TODO: ***************testato solo su browser*************/
+    if (!navigator.onLine) {
+        window.location = "no_network.html";
+    }
+    /*FINE testato solo su browser*******************************/
+
+
+
     getMapObjects();
     $("#map").css("height", $(window).height()); //mette la mappa ad altezza tutto schermo
     $("#backButton").click(function () {
@@ -81,6 +90,7 @@ function getMapObjects(){
         },
         error: function(error) { //TODO gestire gli errori
             console.error(error);
+            alert("Spiacenti, si è verificato un errore imprevisto, per favore riprova più tardi.");
         }
     });
 }
@@ -115,6 +125,35 @@ function openInteractionDiv(oid) {
     $("#map").css("display", "none");
     $("#mapObjectInteractionResultDiv").css("display", "none");
     $("#mapObjectInteractionDiv").css("display", "block");
+
+
+    /*TODO: ***************testato solo su browser*************/
+
+    $.ajax({
+        method: 'post',
+        url: BASE_URL + "getimage.php",
+        data: JSON.stringify(
+            {
+                session_id: localStorage.getItem("sessionId"),
+                target_id: oid
+            }),
+        dataType: 'json',
+        success: function (result) {
+            console.log(result);
+            let mapObjectImage = result.img;
+
+            $("#playerImage").attr("style", "background-image: url('data:image/png;base64,"+mapObjectImage+"')");
+
+        },
+        error: function (error) { //TODO gestire gli errori
+            console.error(error);
+            alert("Spiacenti, si è verificato un errore imprevisto, per favore riprova più tardi.");
+        }
+    });
+    
+    /*FINE testato solo su browser*******************************/
+
+
 
     let mapObjectSizeText;
     if(currentMapObject.type == "MO"){
@@ -214,6 +253,7 @@ function fightEatCall(oid){
         },
         error: function(error) { //TODO gestire gli errori
             console.error(error);
+            alert("Spiacenti, si è verificato un errore imprevisto, per favore riprova più tardi.");
         }
     });
 
@@ -326,7 +366,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 
 
 
-//TODO quando ritorno sulla mappa devo riaggiornare i markers dei mapObjects fatto perchè riaggiorno (?????????)
+//TODO quando ritorno sulla mappa devo riaggiornare i markers dei mapObjects-> fatto perchè riaggiorno (?????????) che schifo ma ok
 
 
 

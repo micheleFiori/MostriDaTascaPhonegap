@@ -10,14 +10,19 @@
     padding: 0 20px;
     float: left;
 }
-.rankingListItem_image{
+.rankingListItem_image {
     float: left;
     margin-right: 20px;
-}
+    height: 80px;
+    width: 80px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}/*
 .rankingListItem_image img{
     height: 80px;
     width: 80px;
-}
+}*/
 .rankingListItem_playerInfo{
     text-align: left;
 }

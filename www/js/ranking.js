@@ -1,7 +1,14 @@
 const BASE_URL = "https://ewserver.di.unimi.it/mobicomp/mostri/";
 
 
-$(function() {
+$(function () {
+
+    /*TODO: ***************testato solo su browser*************/
+    if (!navigator.onLine) {
+        window.location = "no_network.html";
+    }
+    /*FINE testato solo su browser*******************************/
+
 
     getRanking();
 
@@ -18,7 +25,7 @@ function addListItem(posizione,immagine,nomeGiocatore,xp){
     var listItem =
         '<div class="rankingListItem"><br>'+
         '<div class="rankingLIstItem_position"><h1>'+posizione+'</h1></div>' +
-        '<div class="rankingListItem_image"><img src="'+immagine+'"></div>' +
+        '<div class="rankingListItem_image" style="background-image: url('+"'"+immagine+"'"+')"></div>' +
         '<div class="rankingListItem_playerInfo"><h1>'+nomeGiocatore+'</h1> <p>Punti Esperienza: '+xp+'</p></div>'+
         '<div style="clear: both"></div>';
 
@@ -48,7 +55,7 @@ function getRanking(){
                     image = "vectors/warrior_icon.svg";
                 }
                 else{
-                    image = "data:image/png;base64, "+rankingList[i-1].img;
+                    image = "data:image/png;base64, " + rankingList[i - 1].img.replace(/(\r\n|\n|\r)/gm, "");//.replace(/(\r\n|\n|\r)/gm, ""); aggiunto perchè alcune immagini avevano il carattere A CAPO e non venivano visualizzate bene
                 }
 
                 addListItem(i,image,rankingList[i-1].username,rankingList[i-1].xp);
@@ -57,6 +64,7 @@ function getRanking(){
         },
         error: function(error) { //TODO gestire gli errori
             console.error(error);
+            alert("Spiacenti, si è verificato un errore imprevisto, per favore riprova più tardi.");
         }
     });
 }
